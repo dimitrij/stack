@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+</head>
+<body>
+    <div id="output"></div>
+    
+    <script>
+        document.getElementById("output").innerHTML = "TEST" + "<br>";
+        console.log("Min första hej");
+        
+        function Queue() {
+            let count = 0;
+            let head = null;
+            let tail = null;
+
+            console.log("Hej inne i queue");
+
+            this.GetCount = function(){
+                return count;
+                console.log("inne i GetCount");
+            }
+
+        this.Enqueue = function(data){
+                var node ={
+                     data:data,
+                     next:head
+                }
+                
+                if (head === null){
+                    tail == head;
+                } 
+                
+                head = node;
+
+                count++;   
+                console.log("Enqueue");
+            }
+
+        this.Dequeue = function (){
+         if (count === 0) {
+           return null;  
+         }
+         else {
+            let current = head;
+            let previus = null;
+
+            while(current.next){
+                previus = current;
+                current = current.next;
+            }
+
+            if (count >1) {
+                previus.next = null;
+                tail = previus;
+            }
+
+        else {
+            head = null;
+            tail = null;
+        }
+        count--;
+        }
+        }
+        this.DisplayThisQueue = function(){
+            if (head === null) {
+                return null;
+                }
+            else{
+                let arr = new Array();
+                let current = head;
+
+                for(let i=0; i < count; i++){
+                    arr[i] = current.data;
+                    current = current.next;
+                }
+                return arr;
+            }
+            
+        }
+    }
+    console.log("Hej Hej");
+    
+    let minkö = new Queue();
+    minkö.Enqueue("1");
+    minkö.Enqueue("2");
+    minkö.Enqueue("3");
+    minkö.Enqueue("4");
+    minkö.Enqueue("5");
+
+    document.getElementById("output").innerHTML = "Min kö" + minkö.DisplayThisQueue();
+
+
+ 
+    </script>
+</body>
+</html>

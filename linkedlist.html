@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List</title>
+</head>
+<body>
+    <div id="output"></div>
+    
+    <script>
+        document.getElementById("output").innerHTML = "Linked List" + "<br>";
+
+        function LinkedList(){
+            let count = 0;
+            let head = null;
+
+            this.GetCount = function() {
+                return count;
+            }
+
+            this.DisplayAll = function(){
+                if( head === null) {return null;}
+                else {
+                    var arr = new Array();
+                    var current = head;
+
+                    for(let i =0; i < count; i++){
+                        arr[i] = current.data;
+                        current = current.next;
+                    }
+                    return arr;
+
+                }
+
+            }
+
+            this.AddFirst = function(data){
+                let node = { data: data,next: head};
+                head = node;
+                //count = count + 1;
+                count++;
+            }
+            
+            this.Add = function(data, index){
+                if (index === 0) {
+                    this.AddFirst(data);
+                    console.log("första element");
+                }
+                else if (index > -1 && index <= count){
+                    console.log("Körs den?")
+                        var node = {data:data, next:null};
+                        let previous;
+                        let current = head;
+                        let i = 0;
+
+                        while(i++ < index){
+                            previous = current;
+                            current = current.next;
+                        }
+
+                        previous.next = node;
+                        node.next = current;
+                        
+                        count++;
+                }
+                else {
+                    alert("Error");
+                 }
+
+            }
+
+        }
+
+    let minlista = new LinkedList();
+    minlista.Add("1", 0);
+    minlista.Add("2", 1);
+    minlista.Add("3", 2);
+    minlista.Add("4", 3);
+    minlista.Add("5", 4);
+    minlista.Add("6", 5);
+
+    document.getElementById("output").innerHTML = minlista.DisplayAll();
+
+
+    </script>
+</body>
+</html>
